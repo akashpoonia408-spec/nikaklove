@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Chocolate Day Nikki ❤️</title>
+    <style>
+        body {
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0; 
+            background: #2b170e; /* Deep Cocoa Brown */
+            font-family: 'Segoe UI', Arial, sans-serif; overflow: hidden;
+            position: relative; color: #fff;
+        }
+
+        /* Gold Border Glow Effect */
+        .card {
+            background: rgba(43, 23, 14, 0.8); 
+            backdrop-filter: blur(15px);
+            padding: 30px; border-radius: 30px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); 
+            text-align: center;
+            z-index: 10; width: 85%; max-width: 380px; 
+            border: 2px solid #d4af37;
+            position: relative;
+        }
+
+        .choco-tag { 
+            background: linear-gradient(90deg, #d4af37, #f1d592); 
+            color: #2b170e; padding: 10px 20px; border-radius: 50px; 
+            font-weight: bold; margin-bottom: 20px; display: inline-block;
+        }
+
+        /* Sweetness Meter */
+        .meter-container {
+            width: 100%; background: rgba(255,255,255,0.1);
+            height: 10px; border-radius: 10px; margin: 20px 0; display: none;
+        }
+        .meter-fill {
+            width: 0%; height: 100%; background: #d4af37;
+            border-radius: 10px; transition: 2s ease-in-out;
+        }
+
+        #yesBtn { 
+            background: #d4af37; color: #2b170e; 
+            padding: 15px 35px; border: none; 
+            border-radius: 50px; font-weight: bold; 
+            cursor: pointer; font-size: 20px; 
+            transition: 0.3s; transform: scale(1);
+        }
+        #yesBtn:hover { transform: scale(1.1); box-shadow: 0 0 20px #d4af37; }
+
+        #noBtn { 
+            background: transparent; color: #aaa; 
+            border: 1px solid #555; padding: 8px 15px; 
+            border-radius: 50px; cursor: pointer; margin-top: 15px;
+        }
+
+        /* Animated Chocolate Rain */
+        .choco-drop { 
+            position: absolute; top: -50px; font-size: 28px; 
+            z-index: 1; pointer-events: none; animation: fall linear forwards; 
+        }
+        @keyframes fall { 
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; } 
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } 
+        }
+
+        #celebration { display: none; }
+        #typewriter { font-size: 18px; color: #f1d592; margin: 20px 0; font-weight: 500; }
+
+        /* Floating Photos from your gallery */
+        .float-img {
+            position: absolute; bottom: -120px; width: 60px; height: 80px;
+            object-fit: cover; border-radius: 8px; border: 2px solid #d4af37;
+            z-index: 5; animation: floatUp 6s linear forwards;
+        }
+        @keyframes floatUp {
+            to { transform: translateY(-120vh) rotate(15deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="loveSong">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        <div class="choco-tag">Premium Batch: Special For Nikki 🍫</div>
+        
+        <div id="asking">
+            <div class="pic-container">
+                <img src="In Love Cat GIF.gif" style="width:100%; max-width:180px; border-radius:20px;" alt="Cute GIF">
+            </div>
+            <h2 style="margin: 20px 0;">You are sweet, but is this chocolate sweeter than you?</h2>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <button id="yesBtn">Definately NOT! 🍫</button>
+                <button id="noBtn">Maybe...</button>
+            </div>
+        </div>
+
+        <div id="celebration">
+            <h3 style="color:#d4af37; margin:0;">Sweetness Level:</h3>
+            <div class="meter-container" id="meter">
+                <div class="meter-fill" id="fill"></div>
+            </div>
+            <div id="sweetness-text" style="font-weight: bold; color: #d4af37;">0%</div>
+
+            <div id="typewriter"></div>
+            
+            <p style="font-size: 14px; opacity: 0.8; line-height: 1.6;">
+                "Zindagi ki mithaas tumse hai,<br>Chocolate toh bas ek bahana hai!"
+            </p>
+
+            <a href="letter.docx" download style="color: #d4af37; text-decoration: none; font-size: 12px; border: 1px solid #d4af37; padding: 5px 10px; border-radius: 10px; display: inline-block; margin-top: 10px;">
+                Download Chocolate Day Note 📄
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const asking = document.getElementById('asking');
+        const celebration = document.getElementById('celebration');
+        const meter = document.getElementById('meter');
+        const fill = document.getElementById('fill');
+        const song = document.getElementById('loveSong');
+
+        noBtn.onmouseover = () => {
+            noBtn.style.position = "absolute";
+            noBtn.style.left = Math.random() * 80 + "vw";
+            noBtn.style.top = Math.random() * 80 + "vh";
+        };
+
+        yesBtn.onclick = () => {
+            asking.style.display = "none";
+            celebration.style.display = "block";
+            meter.style.display = "block";
+            song.play(); // Music starts
+            
+            // Sweetness Meter logic
+            setTimeout(() => {
+                fill.style.width = "1000%"; 
+                let count = 0;
+                let counter = setInterval(() => {
+                    count += 10;
+                    document.getElementById('sweetness-text').innerHTML = count + "% (Limitless!)";
+                    if(count >= 1000) clearInterval(counter);
+                }, 20);
+            }, 100);
+
+            startChocoRain();
+            startFloatingGallery();
+            typeWriter();
+        };
+
+        function startChocoRain() {
+            const emojis = ['🍫', '🍩', '🍪', '🍬', '✨', '💖'];
+            setInterval(() => {
+                const div = document.createElement('div');
+                div.classList.add('choco-drop');
+                div.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                div.style.left = Math.random() * 100 + 'vw';
+                div.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(div);
+                setTimeout(() => div.remove(), 5000);
+            }, 200);
+        }
+
+        function startFloatingGallery() {
+            const photos = ['p1.jpeg', 'p2.jpeg', 'p3.jpeg', 'p4.jpeg', 'p5.jpeg']; // Add more as needed
+            setInterval(() => {
+                const img = document.createElement('img');
+                img.src = photos[Math.floor(Math.random() * photos.length)];
+                img.classList.add('float-img');
+                img.style.left = Math.random() * 90 + 'vw';
+                document.body.appendChild(img);
+                setTimeout(() => img.remove(), 6000);
+            }, 1500);
+        }
+
+        function typeWriter() {
+            const text = "Nikki, happy Chocolate Day to my most favorite person in the world! ❤️";
+            let i = 0;
+            const container = document.getElementById('typewriter');
+            function play() {
+                if (i < text.length) {
+                    container.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(play, 60);
+                }
+            }
+            play();
+        }
+    </script>
+</body>
+</html>
