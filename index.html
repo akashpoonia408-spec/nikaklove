@@ -64,7 +64,7 @@
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } 
         }
 
-        /* Floating Photos Gallery - Updated for p1 to p14 */
+        /* Floating Photos Gallery (p1 to p14) */
         .float-img {
             position: absolute; bottom: -120px; width: 75px; height: 100px;
             object-fit: cover; border-radius: 10px; border: 2px solid #d4af37;
@@ -103,13 +103,12 @@
 
             <div id="typewriter"></div>
             
-            <p style="font-size: 14px; opacity: 0.9; font-style: italic;">
+            <p style="font-size: 15px; color: #fff; margin-top: 20px; font-weight: bold;">
+                I Love You, Baby! ❤️
+            </p>
+            <p style="font-size: 13px; opacity: 0.8; font-style: italic;">
                 "Kuch meetha ho jaye, <br> tumhare saath poori zindagi ho jaye."
             </p>
-
-            <a href="letter.docx" download class="choco-tag" style="text-decoration: none; margin-top: 15px; font-size: 12px;">
-                Download My Heart's Note 📄❤️
-            </a>
         </div>
     </div>
 
@@ -133,7 +132,6 @@
             celebration.style.display = "block";
             meter.style.display = "block";
             
-            // Sweetness Meter Logic
             setTimeout(() => {
                 fill.style.width = "100%"; 
                 let count = 0;
@@ -162,11 +160,10 @@
                 div.style.animationDuration = Math.random() * 3 + 2 + 's';
                 document.body.appendChild(div);
                 setTimeout(() => div.remove(), 5000);
-            }, 2500);
+            }, 300);
         }
 
         function startFloatingGallery() {
-            // Updated list p1 to p14
             const photoNames = [
                 'p1.jpeg', 'p2.jpeg', 'p3.jpeg', 'p4.jpeg', 'p5.jpeg', 
                 'p6.jpeg', 'p7.jpeg', 'p8.jpeg', 'p9.jpeg', 'p10.jpeg', 
